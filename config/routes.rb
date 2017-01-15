@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
-  resources :checks
+
   get 'sessions/create'
 
   get 'sessions/destroy'
 
   get 'home/show'
-  post 'checks/upload', to:'checks#upload'
-  get 'checks/output', to:'checks#output'
+
+  get 'notes', to:'notes#index'
+  post 'notes', to:'notes#create'
+  get 'notes/new', to:'notes#new'
 
   get 'auth/:provider/callback/', to: 'sessions#create'
   get 'auth/failure/', to: redirect('/')
