@@ -1,0 +1,4 @@
+{ 
+	"client_id": ENV['OAUTH'],
+	"client_secret": ENV['CLIENT_SECRET']
+}
