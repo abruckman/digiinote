@@ -1,4 +1,3 @@
-require "googleauth"
 
 
 class SessionsController < ApplicationController
@@ -24,20 +23,23 @@ class SessionsController < ApplicationController
 		credentials = Google::Auth::UserRefreshCredentials.new(
 			client_id: ENV['OAUTH'],
 			client_secret: ENV['CLIENT_SECRET'],
-			scope: [
+			scope: [ 
 			  "https://www.googleapis.com/auth/drive",
 			  "https://spreadsheets.google.com/feeds/",
 			],
 			redirect_uri: "http://localhost:3000/oauth2callback")
 		credentials.code = params['code']
 		credentials.fetch_access_token!
-		@session = GoogleDrive::Session.from_credentials(credentials)
-		p "-----" * 100
-		p @session
+		# session[:access_token] = credentials.refresh_token
+		session = GoogleDrive.login_with_oauth(credentials)
+		p "-----to s" * 100
+		# session[:authorization] = session1.authorization
+		# p credentials.authorization
+		# p session1.authorization
+		@note = Note.last 
+		session.upload_from_string(@note.text, title='FUCKATHIS', :content_type => "text/plain")
 		p "-----" * 100
 		
-
-		@files = @session.files
 		redirect_to '/notes'
 		 
 	end

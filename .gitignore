@@ -9,6 +9,7 @@
 .env
 client_secrets.json
 google_application_credentials.json
+config.json
 
 # Ignore all logfiles and tempfiles.
 /log/*
