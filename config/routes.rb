@@ -1,18 +1,17 @@
 Rails.application.routes.draw do
-  get 'sessions/create'
 
-  get 'sessions/destroy'
 
-  get 'home/show'
 
-  get 'auth/:provider/callback', to: 'sessions#create'
-  get 'auth/failure', to: redirect('/')
-  get 'signout', to: 'sessions#destroy', as: 'signout'
 
-  resources :sessions, only: [:create, :destroy]
-  resource :home, only: [:show]
+  get 'notes', to:'notes#index'
+  post 'notes', to:'notes#create'
+  get 'notes/new', to:'notes#new'
 
-  root to: "home#show"
+  get 'sessions/new', to: 'sessions#new'
+  get '/oauth2callback', to: 'sessions#create'
+
+
+  root to: "notes#index"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
