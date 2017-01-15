@@ -10,12 +10,7 @@ class ChecksController < ApplicationController
   # GET /checks/1
   # GET /checks/1.json
   def show
-    file_name = "/whiteboard.JPG"
 
-# Performs label detection on the image file
-    labels = VISION.image(file_name).text
-
-    p labels.text
   end
 
   # GET /checks/new
@@ -27,14 +22,22 @@ class ChecksController < ApplicationController
   def edit
   end
 
+  def upload
+    p "%" *50
+    p params
+    labels = VISION.image(params[:picture]).text
+    "*" * 50
+    p labels.text
+    redirect_to '/'
+  end
+
   # POST /checks
   # POST /checks.json
   def create
     @check = Check.new(check_params)
+    file_name = "/whiteboard.JPG"
 
-    p image = Vision::Image.new()
-
-    p vision.to_json
+# Performs label detection on the image file
 
     respond_to do |format|
       if @check.save
@@ -79,6 +82,6 @@ class ChecksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def check_params
-      params.require(:check).permit(:name)
+      params.require(:check).permit(:name, :picture)
     end
 end

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'sessions/destroy'
 
   get 'home/show'
+  post 'checks/upload', to:'checks#upload'
+  get 'checks/output', to:'checks#output'
 
   get 'auth/:provider/callback/', to: 'sessions#create'
   get 'auth/failure/', to: redirect('/')
