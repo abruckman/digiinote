@@ -1,0 +1,9 @@
+<%= form_for @check do |f| %>
+  <%= f.text_field :name %>
+  <%= f.submit %>
+<% end %>
+
+<%= form_tag({action: :upload}, multipart: true) do %>
+  <%= file_field_tag 'picture' %>
+  <%= submit_tag %>
+<% end %>
