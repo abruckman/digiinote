@@ -5,6 +5,10 @@ class NotesController < ApplicationController
   def new
   end
 
+  def show
+    @id = params[:id]
+  end
+
   def create
     scanned = VISION.image(params[:picture]).text
     "*" * 50
@@ -20,9 +24,9 @@ class NotesController < ApplicationController
      ],
      redirect_uri: "http://localhost:3000/oauth2callback")
     auth_url = credentials.authorization_uri
-    
+
     # byebug
-    redirect_to(auth_url.to_s)    
+    redirect_to(auth_url.to_s)
 
     # redirect_to '/notes'
   end
