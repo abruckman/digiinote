@@ -8,6 +8,8 @@
 /.bundle
 .env
 client_secrets.json
+google_application_credentials.json
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
