@@ -2,6 +2,8 @@ require_relative 'boot'
 
 require 'rails/all'
 require 'google/apis/vision_v1'
+require "googleauth"
+
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
