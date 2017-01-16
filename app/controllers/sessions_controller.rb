@@ -35,7 +35,7 @@ class SessionsController < ApplicationController
 		# p credentials.authorization
 		# p session1.authorization
 		@note = Note.last
-		@document = session.upload_from_string(@note.text, title='FUCKATHIS', :content_type => "text/plain")
+		@document = session.upload_from_string(@note.text, @note.title, :content_type => "text/plain")
 
 		# p "document -----------------"
 		# p @documen
