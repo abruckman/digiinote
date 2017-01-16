@@ -1,6 +1,5 @@
 class NotesController < ApplicationController
   def index
-
   end
 
   def new
@@ -8,8 +7,6 @@ class NotesController < ApplicationController
 
   def show
     @id = params[:id]
-    p "note show page-------------"
-
   end
 
   def create
