@@ -10,7 +10,7 @@ class NotesController < ApplicationController
   end
 
   def create
-   
+
 
     begin
         scanned = VISION.image(params[:picture]).text
@@ -25,7 +25,9 @@ class NotesController < ApplicationController
            "https://www.googleapis.com/auth/drive",
            "https://spreadsheets.google.com/feeds/",
          ],
-         redirect_uri: "https://evening-lake-82966.herokuapp.com/oauth2callback")
+         redirect_uri: BASE_URL )
+        p "^" *50
+        p credentials
         auth_url = credentials.authorization_uri
         redirect_to(auth_url.to_s)
 

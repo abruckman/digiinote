@@ -1,11 +1,12 @@
 require "google/cloud/vision"
 GOOGLE_APPLICATION_CREDENTIALS = './google_application_credentials.json'
-ENV['GOOGLE_APPLICATION_CREDENTIALS'] = './google_application_credentials.json'
+unless ENV['DEPLOYED_TO'] == "local"
+  ENV['GOOGLE_APPLICATION_CREDENTIALS'] = './google_application_credentials.json'
 
-File.open("./google_application_credentials.json", "w+") do |f| 
-  f.write(ERB.new(File.read('./google_application_credentials.json.tmp')).result)
+  File.open("./google_application_credentials.json", "w+") do |f|
+    f.write(ERB.new(File.read('./google_application_credentials.json.tmp')).result)
+  end
 end
-
 # Your Google Cloud Platform project ID
 project_id = ENV['PROJECT_ID']
 scopes =  [
