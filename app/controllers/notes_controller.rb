@@ -18,7 +18,7 @@ class NotesController < ApplicationController
        "https://www.googleapis.com/auth/drive",
        "https://spreadsheets.google.com/feeds/",
      ],
-     redirect_uri: "http://localhost:3000/oauth2callback")
+     redirect_uri: "https://evening-lake-82966.herokuapp.com/oauth2callback")
     auth_url = credentials.authorization_uri
     
     # byebug
