@@ -1,13 +1,11 @@
-<%= form_tag({action: :create}, multipart: true) do %>
-  <%= text_field_tag 'title' %>
-  <%= file_field_tag 'picture' %>
-  <%= submit_tag %>
-<% end %>
+<div id='upload-form'>
 
-<canvas id='canvas'>
-</canvas>
-<div id='camera'>
-  <video id='video' width='500' autoplay></video>
-  <img id='photo'>
-  <button id='startbutton'>Take Photo</button>
+	<%= form_tag({action: :create}, multipart: true) do %>
+	  <%= text_field_tag 'title' %>
+	  <%= file_field_tag 'picture' %>
+	  <%= submit_tag %>
+	<% end %>
+
+	 <%= link_to 'Take a Picture', notes_new_path, remote: true, id: "camera" %>
+
 </div>

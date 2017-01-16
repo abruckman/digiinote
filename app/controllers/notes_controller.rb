@@ -4,6 +4,10 @@ class NotesController < ApplicationController
   end
 
   def new
+    respond_to do |format|
+      format.js
+      # format.html {}
+    end
   end
 
   def show
@@ -27,7 +31,8 @@ class NotesController < ApplicationController
 
           file.close
           file.unlink
-          title = scanned[0..10]
+          # byebug
+          title = scanned.text[0..10]
         else
           scanned = VISION.image(params[:picture]).text
           title = params[:title]
