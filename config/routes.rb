@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   post 'notes', to:'notes#create'
   get 'notes/new', to:'notes#new'
   get 'notes/:id', to: 'notes#show'
+  get '/oauth2callback', to: 'notes#create_callback'
 
   get 'sessions/new', to: 'sessions#new'
-  get '/oauth2callback', to: 'sessions#create'
 
   post '/upload', to: 'notes#create'
 
