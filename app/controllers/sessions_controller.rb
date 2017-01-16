@@ -11,7 +11,6 @@ class SessionsController < ApplicationController
 		 ],
 		 redirect_uri: BASE_URL )
 		auth_url = credentials.authorization_uri
-		# byebug
 		redirect_to(auth_url.to_s)
 
 

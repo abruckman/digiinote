@@ -1,4 +1,5 @@
 class NotesController < ApplicationController
+
   def index
   end
 
@@ -11,12 +12,27 @@ class NotesController < ApplicationController
 
   def create
 
-
     begin
-        scanned = VISION.image(params[:picture]).text
-        "*" * 50
+        if request.xhr?
+          picture = params[:picture]
+          png     = Base64.decode64(picture['data:image/png;base64,'.length .. -1])
+          
+          prefix = 'photo_data'
+          suffix = '.png'
+          file = Tempfile.new [prefix, suffix], "#{Rails.root}/tmp", :encoding => 'ascii-8bit'
+          file.write(png)
+          file.rewind
+          scanned = VISION.image(file.path).text
+
+          
+          file.close
+          file.unlink
+        else
+          scanned = VISION.image(params[:picture]).text
+        end
+
+        
         text = scanned.text
-        p "%" *50
         Note.create({text: text})
         credentials = Google::Auth::UserRefreshCredentials.new(
          client_id: ENV['OAUTH'],
@@ -26,8 +42,7 @@ class NotesController < ApplicationController
            "https://spreadsheets.google.com/feeds/",
          ],
          redirect_uri: BASE_URL )
-        p "^" *50
-        p credentials
+        
         auth_url = credentials.authorization_uri
         redirect_to(auth_url.to_s)
 

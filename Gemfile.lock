@@ -51,6 +51,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.4)
+    data_uri (0.1.0)
     debug_inspector (0.0.2)
     dotenv (2.1.1)
     dotenv-rails (2.1.1)
@@ -241,6 +242,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
+  data_uri
   dotenv-rails
   google-api-client (~> 0.9)
   google-cloud-vision

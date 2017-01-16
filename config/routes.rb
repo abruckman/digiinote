@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'sessions/new', to: 'sessions#new'
   get '/oauth2callback', to: 'sessions#create'
 
+  post '/upload', to: 'notes#create'
+
 
   root to: "notes#index"
 
