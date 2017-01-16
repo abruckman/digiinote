@@ -31,7 +31,7 @@ class NotesController < ApplicationController
 
           file.close
           file.unlink
-          title = scanned[0..10]
+          # title = scanned[0..10]
         else
           scanned = VISION.image(params[:picture]).text
           title = params[:title]

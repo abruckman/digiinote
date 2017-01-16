@@ -1,9 +1,9 @@
-<%= form_tag({action: :create}, multipart: true) do %>
-  <%= text_field_tag 'title' %>
-  <%= file_field_tag 'picture' %>
-  <%= submit_tag %>
-<% end %>
+<div id='upload-form'>
 
+	<%= form_tag({action: :create}, multipart: true) do %>
+	  <%= text_field_tag 'title' %>
+	  <%= file_field_tag 'picture' %>
+	  <%= submit_tag %>
+	<% end %>
 
-
-
+</div>
