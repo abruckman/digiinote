@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 		   "https://www.googleapis.com/auth/drive",
 		   "https://spreadsheets.google.com/feeds/",
 		 ],
-		 redirect_uri: "https://evening-lake-82966.herokuapp.com/oauth2callback")
+		 redirect_uri: BASE_URL )
 		auth_url = credentials.authorization_uri
 		# byebug
 		redirect_to(auth_url.to_s)
@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
 			  "https://www.googleapis.com/auth/drive",
 			  "https://spreadsheets.google.com/feeds/",
 			],
-			redirect_uri: "https://evening-lake-82966.herokuapp.com/oauth2callback")
+			redirect_uri: BASE_URL )
 		credentials.code = params['code']
 		credentials.fetch_access_token!
 		# session[:access_token] = credentials.refresh_token
