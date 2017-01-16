@@ -7,7 +7,9 @@
 
 <% else %>
   <%= render 'new' %>
-  <%= link_to 'Take a Picture', notes_new_path, remote: true, id: "camera" %>
+
   <% end %>
+
+  <div id='camera-container'></div>
 
 
