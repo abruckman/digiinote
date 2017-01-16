@@ -35,7 +35,7 @@ class NotesController < ApplicationController
 
 
         text = scanned.text
-        Note.create({text: text, title: title})
+        Note.create({text: text, title: titleir})
         credentials = Google::Auth::UserRefreshCredentials.new(
          client_id: ENV['OAUTH'],
          client_secret: ENV['CLIENT_SECRET'],
