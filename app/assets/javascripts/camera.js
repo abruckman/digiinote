@@ -100,11 +100,9 @@
       canvas.width = width;
       canvas.height = height;
       context.drawImage(video, 0, 0, width, height);
-    
+      
       var data = canvas.toDataURL('image/png');
-      // require('buffer');
-      // data = new Buffer(data).toString('base64');
-      console.log(data);
+      // console.log(data);
       photo.setAttribute('src', data);
 
       var formdata = new FormData();

@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
 		 redirect_uri: "http://localhost:3000/oauth2callback")
 		auth_url = credentials.authorization_uri
 		
-		# byebug
+		
 		redirect_to(auth_url.to_s)
 
 

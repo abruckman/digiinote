@@ -18,6 +18,7 @@ class NotesController < ApplicationController
       file.rewind
       scanned = VISION.image(file.path).text
 
+      
       file.close
       file.unlink
     else

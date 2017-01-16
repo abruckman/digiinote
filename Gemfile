@@ -28,8 +28,6 @@ gem "omniauth-google-oauth2", "~> 0.2.1"
 gem "google-cloud-vision"
 gem 'google_drive'
 gem 'data_uri'
-gem 'open-uri'
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
