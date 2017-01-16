@@ -1,4 +1,5 @@
 class NotesController < ApplicationController
+
   def index
   end
 
@@ -6,7 +7,28 @@ class NotesController < ApplicationController
   end
 
   def create
-    scanned = VISION.image(params[:picture]).text
+    # if request.xhr?
+    #   picture = params[:picture]['data:image/png;base64,'.length .. -1]
+    # else
+      picture = params[:picture]
+        png      = Base64.decode64(picture['data:image/png;base64,'.length .. -1])
+      # uri = URI::Data.new(picture)
+      p '*'*20
+      # p uri.data.encoding
+      p '*'*20
+      # file = Tempfile.new('foo')
+      # file.write(uri.data)
+      # file.rewind
+
+      File.open("#{Rails.root}/public/uploads/somefilename.png", 'wb') do |f|
+        f.write png
+      end
+
+  
+    # end
+    scanned = VISION.image("#{Rails.root}/public/uploads/somefilename.png").text
+    # file.close
+    # file.unlink
     "*" * 50
     text = scanned.text
     p "%" *50
