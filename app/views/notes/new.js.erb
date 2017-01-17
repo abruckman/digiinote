@@ -23,29 +23,6 @@ $('#upload-form').hide()
   var photo = null;
   var startbutton = null;
 
-
-  function searchForRearCamera() {
-      var deferred = new $.Deferred();
-      //MediaStreamTrack.getSources seams to be supported only by Chrome
-      if (MediaStreamTrack && MediaStreamTrack.getSources) {
-          MediaStreamTrack.getSources(function (sources) {
-              var rearCameraIds = sources.filter(function (source) {
-                  return (source.kind === 'video' && source.facing === 'environment');
-              }).map(function (source) {
-                  return source.id;
-              });
-              if (rearCameraIds.length) {
-                  deferred.resolve(rearCameraIds[0]);
-              } else {
-                  deferred.resolve(null);
-              }
-          });
-      } else {
-          deferred.resolve(null);
-      }
-      return deferred.promise();
-  }
-
   function startup() {
     video = document.getElementById('video');
     canvas = document.getElementById('canvas');
@@ -54,18 +31,9 @@ $('#upload-form').hide()
 
 
     var videoSettings = {
-      video: { optional: [] },
+      video: { facingMode: "environment" },
       audio: false
     };
-
-    rearCameraId = searchForRearCamera();
-
-    if (rearCameraId) {
-        videoSettings.video.optional.push({
-            sourceId: rearCameraId
-        });
-    }
-
 
     navigator.getMedia = ( navigator.getUserMedia ||
                            navigator.webkitGetUserMedia ||
