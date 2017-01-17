@@ -27,7 +27,6 @@ RSpec.describe NotesController, type: :controller do
     it "renders new form" do 
       get :index
       response.should render_template(:partial => '_new')
-
     end
 
   end
