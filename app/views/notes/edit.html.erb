@@ -4,4 +4,7 @@
 	<%= f.submit %>
 <% end %>
 
+<div id='camera-container'></div>
+
+<%= link_to 'Take a Picture', getcamera_path, remote: true, id: "camera" %>
 <%= link_to 'Send to Google Docs', oauth2_path %>

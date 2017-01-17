@@ -64,16 +64,40 @@ class NotesController < ApplicationController
 
   def update
     @note = Note.find(session[:note_id])
-    picture = note_params[:picture]
-    p "*" * 50
-    p picture
-    p "*" * 50    
-    scanned = VISION.image(picture).text
-    title = params[:title]
+    if request.xhr?
+      picture = params[:picture]
+      png     = Base64.decode64(picture['data:image/png;base64,'.length .. -1])
+
+      prefix = 'photo_data'
+      suffix = '.png'
+      file = Tempfile.new [prefix, suffix], "#{Rails.root}/tmp", :encoding => 'ascii-8bit'
+      file.write(png)
+      file.rewind
+      scanned = VISION.image(file.path).text
+
+
+      file.close
+      file.unlink
+    else
+      picture = note_params[:picture]
+      p "*" * 50
+      p picture
+      p "*" * 50    
+
+      scanned = VISION.image(picture).text
+      title = params[:title]
+    end
     text = note_params[:text] + scanned.text
- 
     @note.update(text: text)
     redirect_to "/notes/#{@note.id}/edit"
+  end
+
+  def get_camera
+    @note = Note.find(session[:note_id])
+    respond_to do |format|
+      format.js { render "edit" }
+      # format.html {}
+    end
   end
 
   def save_google
