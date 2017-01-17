@@ -4,8 +4,12 @@ $('#summon-camera').hide();
 $('.summon-upload').on('click', function(e) {
   e.preventDefault()
   $('#upload-form').show();
-  $('#camera-container').empty();
   $('#summon-camera').show();
+  video = document.getElementById('video');
+  console.log(video.src)
+  stop(video.src);
+
+  $('#camera-container').empty();
 })
 
   console.log("here!")
@@ -31,8 +35,8 @@ $('.summon-upload').on('click', function(e) {
 
   function stop(stream) {
     stream.getTracks().forEach(track => track.stop());
-
   }
+
 
   function startup() {
     video = document.getElementById('video');
