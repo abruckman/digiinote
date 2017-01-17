@@ -1,10 +1,12 @@
 <%= form_for @note do |f| %>
 	<%= f.text_area :text %>
-	<%= f.file_field :picture %>
-	<%= f.submit %>
+	<div id='upload-form'>
+		<%= f.file_field :picture %>
+		<%= f.submit %>
+	</div>
 <% end %>
 
 <div id='camera-container'></div>
 
-<%= link_to 'Take a Picture', getcamera_path, remote: true, id: "camera" %>
+<%= link_to 'Take a Picture', getcamera_path, remote: true, id: "summon-camera" %>
 <%= link_to 'Send to Google Docs', oauth2_path %>
