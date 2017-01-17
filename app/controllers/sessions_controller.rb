@@ -42,6 +42,6 @@ class SessionsController < ApplicationController
 	#
 	# 	redirect_to "/notes/#{@document.id}"
 
-	end
+	# end
 
 end
