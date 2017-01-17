@@ -1,5 +1,12 @@
 $('#camera-container').html("<%= j (render 'camera') %>");
-$('#upload-form').hide()
+$('#upload-form').hide();
+$('#summon-camera').hide();
+$('.summon-upload').on('click', function(e) {
+  e.preventDefault()
+  $('#upload-form').show();
+  $('#camera-container').empty();
+  $('#summon-camera').show();
+})
 
   console.log("here!")
   // The width and height of the captured photo. We will set the
@@ -21,6 +28,11 @@ $('#upload-form').hide()
   var canvas = null;
   var photo = null;
   var startbutton = null;
+
+  function stop(stream) {
+    stream.getTracks().forEach(track => track.stop());
+
+  }
 
   function startup() {
     video = document.getElementById('video');
