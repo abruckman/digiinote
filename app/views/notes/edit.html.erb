@@ -1,0 +1,7 @@
+<%= form_for @note do |f| %>
+	<%= f.text_area :text %>
+	<%= f.file_field :picture %>
+	<%= f.submit %>
+<% end %>
+
+<%= link_to 'Send to Google Docs', oauth2_path %>
