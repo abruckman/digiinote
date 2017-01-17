@@ -23,6 +23,31 @@ $('#upload-form').hide()
   var photo = null;
   var startbutton = null;
 
+
+  function searchForRearCamera() {
+      var deferred = new $.Deferred();
+      //MediaStreamTrack.getSources seams to be supported only by Chrome
+      if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
+          navigator.mediaDevices.enumerateDevices()
+            .then(function(sources){
+              var rearCameraIds = sources.filter(function (source) {
+                console.log(source);
+                  return (source.kind === 'videoinput' && source.label.includes('back'));
+              }).map(function (source) {
+                  return source.deviceId;
+              });
+              if (rearCameraIds.length) {
+                  deferred.resolve(rearCameraIds[0]);
+              } else {
+                  deferred.resolve(null);
+              }
+          });
+      } else {
+          deferred.resolve(null);
+      }
+      return deferred.promise();
+  }
+
   function startup() {
     video = document.getElementById('video');
     canvas = document.getElementById('canvas');
@@ -31,9 +56,18 @@ $('#upload-form').hide()
 
 
     var videoSettings = {
-      video: { facingMode: "environment" },
+      video: { optional: [] },
       audio: false
     };
+
+    var rearCameraId = searchForRearCamera();
+
+    if (rearCameraId) {
+        videoSettings.video.optional.push({
+            sourceId: rearCameraId
+        });
+    }
+
 
     navigator.getMedia = ( navigator.getUserMedia ||
                            navigator.webkitGetUserMedia ||
