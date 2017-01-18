@@ -8,6 +8,7 @@ $('.summon-upload').on('click', function(e) {
   $('#summon-camera').show();
 })
 
+  console.log("here IN THE EDIT JS.ERB!")
 
   // The width and height of the captured photo. We will set the
   // width to the value defined here, but the height will be
@@ -29,6 +30,9 @@ $('.summon-upload').on('click', function(e) {
   var photo = null;
   var startbutton = null;
 
+
+
+  
   function searchForRearCamera() {
         var deferred = new $.Deferred();
         //MediaStreamTrack.getSources seams to be supported only by Chrome
@@ -54,10 +58,7 @@ $('.summon-upload').on('click', function(e) {
     }
 
 
-  function stop(stream) {
-    stream.getTracks().forEach(track => track.stop());
-
-  }
+  
 
   function startup() {
     video = document.getElementById('video');
