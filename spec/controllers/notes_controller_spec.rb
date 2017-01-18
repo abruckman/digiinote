@@ -5,7 +5,10 @@
 ##################################################
 
 require 'spec_helper'
- 
+require 'capybara/rails'
+require 'capybara/rspec'
+include Capybara::DSL
+
 RSpec.describe NotesController, type: :controller do
 
   let(:valid_attributes) {
@@ -56,6 +59,17 @@ RSpec.describe NotesController, type: :controller do
     end
 
   end
+
+  describe "Click Link" do 
+    it "AJAXifies a camera in " do 
+      visit root_path
+      p page.html
+      click_link("Take a Picture")
+    end
+
+
+  end
+
 
 
   

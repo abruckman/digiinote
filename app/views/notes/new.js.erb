@@ -1,6 +1,15 @@
-
 $('#camera-container').html("<%= j (render 'camera') %>");
 $('#upload-form').hide()
+  
+
+
+$.getScript('/javascript_helper.js', function () {          
+      test();  
+}); 
+
+
+
+
 
   console.log("ready!")
   // The width and height of the captured photo. We will set the
