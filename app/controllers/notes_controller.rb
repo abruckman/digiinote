@@ -49,8 +49,7 @@ class NotesController < ApplicationController
     if request.xhr?
       text = camera_reader(params[:picture])
     else
-      picture = note_params[:picture]
-      text = VISION.image(picture).text.text
+      text = VISION.image(note_params[:picture]).text.text
       title = params[:title]
     end
     compiled_text = note_params[:text] + text
@@ -68,16 +67,16 @@ class NotesController < ApplicationController
 
   def save_google
     credentials = Google::Auth::UserRefreshCredentials.new(
-         client_id: ENV['OAUTH'],
-         client_secret: ENV['CLIENT_SECRET'],
-         scope: [
-           "https://www.googleapis.com/auth/drive",
-           "https://spreadsheets.google.com/feeds/",
-         ],
-         redirect_uri: BASE_URL )
+       client_id: ENV['OAUTH'],
+       client_secret: ENV['CLIENT_SECRET'],
+       scope: [
+         "https://www.googleapis.com/auth/drive",
+         "https://spreadsheets.google.com/feeds/",
+       ],
+       redirect_uri: BASE_URL )
 
-        auth_url = credentials.authorization_uri
-        redirect_to(auth_url.to_s)
+      auth_url = credentials.authorization_uri
+      redirect_to(auth_url.to_s)
   end
 
   def create_callback
