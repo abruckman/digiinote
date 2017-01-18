@@ -64,63 +64,61 @@ $('#upload-form').hide()
     var rearCameraId = null;
     searchForRearCamera().done(function(id){
       rearCameraId = id;
-      console.log(rearCameraId);
 
-
-    if (rearCameraId) {
-        videoSettings.video.optional.push({
-            sourceId: rearCameraId
-        });
-    }
-
-
-    navigator.getMedia = ( navigator.getUserMedia ||
-                           navigator.webkitGetUserMedia ||
-                           navigator.mozGetUserMedia ||
-                           navigator.msGetUserMedia);
-
-    navigator.getMedia(
-      videoSettings,
-      function(stream) {
-        if (navigator.mozGetUserMedia) {
-          video.mozSrcObject = stream;
-        } else {
-          var vendorURL = window.URL || window.webkitURL;
-          video.src = vendorURL.createObjectURL(stream);
-        }
-        video.play();
-      },
-      function(err) {
-        console.log("An error occured! " + err);
+      if (rearCameraId) {
+          videoSettings.video.optional.push({
+              sourceId: rearCameraId
+          });
       }
-    );
 
-    video.addEventListener('canplay', function(ev){
-      if (!streaming) {
-        height = video.videoHeight / (video.videoWidth/width);
-      
-        // Firefox currently has a bug where the height can't be read from
-        // the video, so we will make assumptions if this happens.
-      
-        if (isNaN(height)) {
-          height = width / (4/3);
+
+      navigator.getMedia = ( navigator.getUserMedia ||
+                             navigator.webkitGetUserMedia ||
+                             navigator.mozGetUserMedia ||
+                             navigator.msGetUserMedia);
+
+      navigator.getMedia(
+        videoSettings,
+        function(stream) {
+          if (navigator.mozGetUserMedia) {
+            video.mozSrcObject = stream;
+          } else {
+            var vendorURL = window.URL || window.webkitURL;
+            video.src = vendorURL.createObjectURL(stream);
+          }
+          video.play();
+        },
+        function(err) {
+          console.log("An error occured! " + err);
         }
-      
-        video.setAttribute('width', width);
-        video.setAttribute('height', height);
-        canvas.setAttribute('width', width);
-        canvas.setAttribute('height', height);
-        streaming = true;
-      }
-    }, false);
+      );
 
-    startbutton.addEventListener('click', function(ev){
-      takepicture();
-      ev.preventDefault();
-    }, false);
-    
-    clearphoto();
-    });
+      video.addEventListener('canplay', function(ev){
+        if (!streaming) {
+          height = video.videoHeight / (video.videoWidth/width);
+        
+          // Firefox currently has a bug where the height can't be read from
+          // the video, so we will make assumptions if this happens.
+        
+          if (isNaN(height)) {
+            height = width / (4/3);
+          }
+        
+          video.setAttribute('width', width);
+          video.setAttribute('height', height);
+          canvas.setAttribute('width', width);
+          canvas.setAttribute('height', height);
+          streaming = true;
+        }
+      }, false);
+
+      startbutton.addEventListener('click', function(ev){
+        takepicture();
+        ev.preventDefault();
+      }, false);
+      
+      clearphoto();
+      });
 
     
   }
@@ -172,8 +170,3 @@ $('#upload-form').hide()
 
 
   startup();
-  // Set up our event listener to run the startup process
-  // once loading is complete.
-
-  // window.addEventListener('load', startup, false);
-  // $('#camera').on('click', startup, false);
