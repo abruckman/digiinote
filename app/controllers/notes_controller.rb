@@ -1,4 +1,5 @@
 class NotesController < ApplicationController
+  include NotesHelper
 
   def index
   end
@@ -14,31 +15,12 @@ class NotesController < ApplicationController
 
     # begin
         if request.xhr?
-          picture = params[:picture]
-          png     = Base64.decode64(picture['data:image/png;base64,'.length .. -1])
-
-          prefix = 'photo_data'
-          suffix = '.png'
-          file = Tempfile.new [prefix, suffix], "#{Rails.root}/tmp", :encoding => 'ascii-8bit'
-          file.write(png)
-          file.rewind
-          scanned = VISION.image(file.path).text
-
-
-          file.close
-          file.unlink
-          # byebug
-          title = scanned.text[0..10]
+          text = camera_reader(params[:picture])
+          title = text[0..10]
         else
-          p "*" * 50
-          p params[:picture]
-          p "*" * 50
-          scanned = VISION.image(params[:picture]).text
+          text = VISION.image(params[:picture]).text.text
           title = params[:title]
         end
-
-
-        text = scanned.text
 
         @note = Note.create({text: text, title: title})
         session[:note_id] = @note.id
@@ -65,30 +47,14 @@ class NotesController < ApplicationController
   def update
     @note = Note.find(session[:note_id])
     if request.xhr?
-      picture = params[:picture]
-      png     = Base64.decode64(picture['data:image/png;base64,'.length .. -1])
-
-      prefix = 'photo_data'
-      suffix = '.png'
-      file = Tempfile.new [prefix, suffix], "#{Rails.root}/tmp", :encoding => 'ascii-8bit'
-      file.write(png)
-      file.rewind
-      scanned = VISION.image(file.path).text
-
-
-      file.close
-      file.unlink
+      text = camera_reader(params[:picture])
     else
       picture = note_params[:picture]
-      p "*" * 50
-      p picture
-      p "*" * 50    
-
-      scanned = VISION.image(picture).text
+      text = VISION.image(picture).text.text
       title = params[:title]
     end
-    text = note_params[:text] + scanned.text
-    @note.update(text: text)
+    compiled_text = note_params[:text] + text
+    @note.update(text: compiled_text)
     redirect_to "/notes/#{@note.id}/edit"
   end
 
