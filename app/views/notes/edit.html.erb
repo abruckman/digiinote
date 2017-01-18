@@ -1,3 +1,8 @@
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+  <br>
+<% end %>
+
 <%= form_for @note do |f| %>
 	<%= f.text_area :text %>
 	<div id='upload-form'>

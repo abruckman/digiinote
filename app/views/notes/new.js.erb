@@ -2,7 +2,6 @@
 $('#camera-container').html("<%= j (render 'camera') %>");
 $('#upload-form').hide()
 
-  console.log("ready!")
   // The width and height of the captured photo. We will set the
   // width to the value defined here, but the height will be
   // calculated based on the aspect ratio of the input stream.
@@ -31,7 +30,6 @@ $('#upload-form').hide()
           navigator.mediaDevices.enumerateDevices()
             .then(function(sources){
               var rearCameraIds = sources.filter(function (source) {
-                console.log(source)
                   return (source.kind === 'videoinput' && source.label.includes('back'));
               }).map(function (source) {
                   return source.deviceId;
