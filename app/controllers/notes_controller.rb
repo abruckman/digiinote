@@ -14,6 +14,7 @@ class NotesController < ApplicationController
   def create
 
     begin
+        # receives AJAX request only when image is captured by device
         if request.xhr?
           text = camera_reader(params[:picture])
           title = text[0..10]
@@ -56,6 +57,7 @@ class NotesController < ApplicationController
   def update
     begin
       @note = Note.find(session[:note_id])
+      # receives AJAX request only when image is captured by device
       if request.xhr?
         text = camera_reader(params[:picture])
       else

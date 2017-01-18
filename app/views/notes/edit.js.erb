@@ -29,6 +29,7 @@ $('.summon-upload').on('click', function(e) {
   var photo = null;
   var startbutton = null;
 
+  //enumerate devices to search for a phone rear camera video source. This will be selected as default if it exists
   function searchForRearCamera() {
         var deferred = new $.Deferred();
         //MediaStreamTrack.getSources seams to be supported only by Chrome
@@ -54,11 +55,6 @@ $('.summon-upload').on('click', function(e) {
     }
 
 
-  function stop(stream) {
-    stream.getTracks().forEach(track => track.stop());
-
-  }
-
   function startup() {
     video = document.getElementById('video');
     canvas = document.getElementById('canvas');
@@ -80,6 +76,7 @@ $('.summon-upload').on('click', function(e) {
         });
     }
 
+    //getUserMedia gives access to user device video stream
     navigator.getMedia = ( navigator.getUserMedia ||
                            navigator.webkitGetUserMedia ||
                            navigator.mozGetUserMedia ||
