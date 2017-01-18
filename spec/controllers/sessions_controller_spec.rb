@@ -1,14 +1,26 @@
-require 'rails_helper'
+require 'spec_helper'
 
-RSpec.describe ToysController, type: :controller do
+RSpec.describe SessionsController, type: :controller do
 
-  let!(:pet) {Pet.create(name: "TonyTheTiger", breed: "GrrreAT", age: 47, cute: true)}
-  let!(:toy) {Toy.create(description: "Sqeaker", pet: pet)}
+  describe "GET #new" do
+  	let(:credentials) { Google::Auth::UserRefreshCredentials.new(
+		 client_id: ENV['OAUTH'],
+		 client_secret: ENV['CLIENT_SECRET'],
+		 scope: [
+		   "https://www.googleapis.com/auth/drive",
+		   "https://spreadsheets.google.com/feeds/",
 
-  describe "GET #index" do
-    it "assigns all toys as @toys" do
-      get :index, params: {pet_id: pet.id}
-      expect(assigns(:toys)).to eq(pet.toys)
+		 ],
+		 redirect_uri:'http://localhost:3000/oauth2callback'
+ ) }
+
+
+    it "redirects to new url" do
+      auth_url = credentials.authorization_uri
+      get :new
+
+      expect(response).to redirect_to(auth_url.to_s)
+
     end
   end
 
