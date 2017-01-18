@@ -49,7 +49,11 @@ class NotesController < ApplicationController
     if request.xhr?
       text = camera_reader(params[:picture])
     else
-      text = VISION.image(note_params[:picture]).text.text
+      if note_params[:picture]
+        text = VISION.image(note_params[:picture]).text.text
+      else
+        text = ""
+      end
       title = params[:title]
     end
     compiled_text = note_params[:text] + text
@@ -63,49 +67,6 @@ class NotesController < ApplicationController
       format.js { render "edit" }
       # format.html {}
     end
-  end
-
-  def save_google
-    credentials = Google::Auth::UserRefreshCredentials.new(
-       client_id: ENV['OAUTH'],
-       client_secret: ENV['CLIENT_SECRET'],
-       scope: [
-         "https://www.googleapis.com/auth/drive",
-         "https://spreadsheets.google.com/feeds/",
-       ],
-       redirect_uri: BASE_URL )
-
-      auth_url = credentials.authorization_uri
-      redirect_to(auth_url.to_s)
-  end
-
-  def create_callback
-    credentials = Google::Auth::UserRefreshCredentials.new(
-      client_id: ENV['OAUTH'],
-      client_secret: ENV['CLIENT_SECRET'],
-      scope: [
-        "https://www.googleapis.com/auth/drive",
-        "https://spreadsheets.google.com/feeds/",
-      ],
-      redirect_uri: BASE_URL )
-    credentials.code = params['code']
-    credentials.fetch_access_token!
-    @note = Note.find(session[:note_id])
-    # session[:access_token] = credentials.refresh_token
-    session = GoogleDrive.login_with_oauth(credentials)
-    
-
-    # session[:authorization] = session1.authorization
-    # p credentials.authorization
-    # p session1.authorization
-    # @note = Note.last
-    @document = session.upload_from_string(@note.text, @note.title, :content_type => "text/plain")
-
-    # p "document -----------------"
-    # p @documen
-
-    redirect_to "/notes/#{@document.id}"
-
   end
 
   private
