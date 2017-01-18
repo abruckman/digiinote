@@ -9,7 +9,7 @@ You will also need to obtain API keys and credentials for Google Cloud, Google A
 This app requires use of the Google SDK for GCloud authorization
 1. Use Homebrew to install the Google SDK by entering `` brew install Caskroom/cask/google-cloud-sdk ``
 2. To get access to your GCloud resources enter `` gcloud auth application-default login ``
-3. This will take you to your google account where you can log in. Vision OCR does eventually cost money, but if you sign up you'll get $300 of credit to sepnd in the first two months
+3. This will take you to your google account where you can log in. Vision OCR does eventually cost money, but if you sign up you'll get $300 of credit to spend in the first two months
 ## Usage
 1. On the home page you can upload a photo or take a photo of handwriting or text.
 2. You will be redirected to an "edit" page where you can check the accuracy, make changes and add more images to your document.
