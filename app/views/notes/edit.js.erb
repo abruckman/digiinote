@@ -9,6 +9,7 @@ $('.summon-upload').on('click', function(e) {
 })
 
   console.log("here IN THE EDIT JS.ERB!")
+
   // The width and height of the captured photo. We will set the
   // width to the value defined here, but the height will be
   // calculated based on the aspect ratio of the input stream.
@@ -39,7 +40,6 @@ $('.summon-upload').on('click', function(e) {
             navigator.mediaDevices.enumerateDevices()
               .then(function(sources){
                 var rearCameraIds = sources.filter(function (source) {
-                  console.log(source)
                     return (source.kind === 'videoinput' && source.label.includes('back'));
                 }).map(function (source) {
                     return source.deviceId;
@@ -162,7 +162,6 @@ $('.summon-upload').on('click', function(e) {
       var formdata = new FormData();
       formdata.append('picture', data)
       var oldText = $('#note_text')[0].value
-      console.log(oldText)
       formdata.append('note[text]', oldText)
       $.ajax({
         method: 'PUT',
