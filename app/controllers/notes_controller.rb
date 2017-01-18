@@ -13,7 +13,7 @@ class NotesController < ApplicationController
 
   def create
 
-    # begin
+    begin
         if request.xhr?
           text = camera_reader(params[:picture])
           title = text[0..10]
@@ -28,11 +28,20 @@ class NotesController < ApplicationController
         redirect_to "/notes/#{@note.id}/edit"
 
         # byebug
-    # rescue
-    #   flash[:notice] = "Something went wrong, try again"
-    #   redirect_to notes_path
-    # end
-    # redirect_to '/notes'
+    rescue Exception => e
+      p "*"*50
+      p e.message
+      p "*"*50
+      if e.message == "undefined method `text' for nil:NilClass"
+        flash[:notice] = "No readable text in picture, try again with a new image"
+      elsif e.message.include?("8:Insufficient tokens") || e.message.include?("14")
+        flash[:notice] = "Google is tired, try again after a short break"
+      else
+        flash[:notice] = "#{e.message}; try again"
+      end
+      
+      redirect_to notes_path
+    end
   end
 
 
@@ -45,20 +54,35 @@ class NotesController < ApplicationController
   end
 
   def update
-    @note = Note.find(session[:note_id])
-    if request.xhr?
-      text = camera_reader(params[:picture])
-    else
-      if note_params[:picture]
-        text = VISION.image(note_params[:picture]).text.text
+    begin
+      @note = Note.find(session[:note_id])
+      if request.xhr?
+        text = camera_reader(params[:picture])
       else
-        text = ""
+        if note_params[:picture]
+          text = VISION.image(note_params[:picture]).text.text
+        else
+          text = ""
+        end
+        title = params[:title]
       end
-      title = params[:title]
+      compiled_text = note_params[:text] + text
+      @note.update(text: compiled_text)
+      redirect_to "/notes/#{@note.id}/edit"
+    rescue Exception => e
+      p "*"*50
+      p e.message
+      p "*"*50
+      if e.message == "undefined method `text' for nil:NilClass"
+        flash[:notice] = "No readable text in picture, try again with a new image"
+      elsif e.message.include?("8:Insufficient tokens") || e.message.include?("14")
+        flash[:notice] = "Google is tired, try again after a short break"
+      else
+        flash[:notice] = "#{e.message}; try again"
+      end
+      
+      redirect_to "/notes/#{@note.id}/edit"
     end
-    compiled_text = note_params[:text] + text
-    @note.update(text: compiled_text)
-    redirect_to "/notes/#{@note.id}/edit"
   end
 
   def get_camera
