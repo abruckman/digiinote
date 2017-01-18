@@ -29,6 +29,32 @@ $('.summon-upload').on('click', function(e) {
   var photo = null;
   var startbutton = null;
 
+  function searchForRearCamera() {
+        var deferred = new $.Deferred();
+        //MediaStreamTrack.getSources seams to be supported only by Chrome
+        if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
+            navigator.mediaDevices.enumerateDevices()
+              .then(function(sources){
+                var rearCameraIds = sources.filter(function (source) {
+                  console.log(source)
+                    return (source.kind === 'videoinput' && source.label.includes('back'));
+                }).map(function (source) {
+                    return source.deviceId;
+                });
+                if (rearCameraIds.length) {
+                    deferred.resolve(rearCameraIds[0]);
+                } else {
+                    deferred.resolve(null);
+                }
+            });
+        } else {
+            deferred.resolve(null);
+        }
+
+        return deferred.promise();
+    }
+
+
   function stop(stream) {
     stream.getTracks().forEach(track => track.stop());
 
@@ -40,16 +66,28 @@ $('.summon-upload').on('click', function(e) {
     photo = document.getElementById('photo');
     startbutton = document.getElementById('startbutton');
 
+    var videoSettings = {
+      video: { optional: [] },
+      audio: false
+    };
+
+    var rearCameraId = null;
+    searchForRearCamera().done(function(id){
+      rearCameraId = id;
+
+    if (rearCameraId) {
+        videoSettings.video.optional.push({
+            sourceId: rearCameraId
+        });
+    }
+
     navigator.getMedia = ( navigator.getUserMedia ||
                            navigator.webkitGetUserMedia ||
                            navigator.mozGetUserMedia ||
                            navigator.msGetUserMedia);
 
     navigator.getMedia(
-      {
-        video: true,
-        audio: false
-      },
+      videoSettings,
       function(stream) {
         if (navigator.mozGetUserMedia) {
           video.mozSrcObject = stream;
@@ -89,6 +127,7 @@ $('.summon-upload').on('click', function(e) {
     }, false);
     
     clearphoto();
+    });
   }
 
   // Fill the photo with an indication that none has been
