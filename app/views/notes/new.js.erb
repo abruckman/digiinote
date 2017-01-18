@@ -31,7 +31,7 @@ $('#upload-form').hide()
           navigator.mediaDevices.enumerateDevices()
             .then(function(sources){
               var rearCameraIds = sources.filter(function (source) {
-                console.log(source);
+                console.log(source)
                   return (source.kind === 'videoinput' && source.label.includes('back'));
               }).map(function (source) {
                   return source.deviceId;
@@ -45,6 +45,7 @@ $('#upload-form').hide()
       } else {
           deferred.resolve(null);
       }
+
       return deferred.promise();
   }
 
@@ -60,7 +61,11 @@ $('#upload-form').hide()
       audio: false
     };
 
-    var rearCameraId = searchForRearCamera();
+    var rearCameraId = null;
+    searchForRearCamera().done(function(id){
+      rearCameraId = id;
+      console.log(rearCameraId);
+
 
     if (rearCameraId) {
         videoSettings.video.optional.push({
@@ -115,6 +120,9 @@ $('#upload-form').hide()
     }, false);
     
     clearphoto();
+    });
+
+    
   }
 
   // Fill the photo with an indication that none has been
