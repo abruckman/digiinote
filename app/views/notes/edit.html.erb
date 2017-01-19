@@ -5,10 +5,29 @@
 
 <%= form_for @note do |f| %>
 	<%= f.text_area :text %>
-	<div id='upload-form'>
-		<%= f.file_field :picture %>
-		<%= f.submit %>
-	</div>
+	<ul class="collapsible" data-collapsible="accordion">
+	    <li>
+	      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+	      <div class="collapsible-body camera-container">
+	      	<%= f.file_field :picture %>
+			<%= f.submit %>
+	      </div>
+	    </li>
+	    <li>
+	      <div class="collapsible-header edit-camera-caller"><i class="material-icons">whatshot</i>take a picture</div>
+
+	      <div class="collapsible-body" >take a picture of your document
+	      <%= render partial: 'camera' %>
+	      </div>
+	    </li>
+	    <li>
+	      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+	      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+	    </li>
+  	</ul>
+
+		
+	
 <% end %>
 
 <div id='camera-container'></div>
