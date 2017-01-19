@@ -13,5 +13,26 @@
 <% end %>
 
 
+  <ul class="collapsible" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+      <div class="collapsible-body camera-container"><p>Lorem ipsum dolor sit amet.</p></div>
+    </li>
+    <li>
+
+      <div class="collapsible-header camera-caller"><i class="material-icons">whatshot</i>take a picture</div>
+
+      <div class="collapsible-body" >take a picture of your document
+      <%= render partial: 'camera' %>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+    </li>
+  </ul>
+
+
+
 
 </div>
