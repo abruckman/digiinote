@@ -3,7 +3,6 @@ class NotesController < ApplicationController
   
 
   def index
-    p "breh" * 40
     render :index
   end
 
