@@ -2,16 +2,17 @@
 
 
 
-
   <ul class="collapsible" data-collapsible="accordion">
     <li>
       <div class="collapsible-header"><i class="material-icons">note_add</i>Upload an Image</div>
         <div class="collapsible-body camera-container">
-        <%= form_tag({action: :create}, multipart: true) do %>
-        <%= text_field_tag 'title' %>
+        <div id= "form-thing">
+        <%= form_tag({action: :create}, multipart: true ) do %>
+        <%= text_field_tag 'title', 'Title', :onclick => 'if($(this).val()=="Title"){$(this).val("");};' %>
         <%= file_field_tag 'picture' %>
         <%= submit_tag %>
         <% end %>
+        </div>
       </div>
     </li>
     <li>
