@@ -1,28 +1,24 @@
 <div id='upload-form'>
 
-	<%= form_tag({action: :create}, multipart: true) do %>
-	  <%= text_field_tag 'title' %>
-	  <%= file_field_tag 'picture' %>
-	  <%= submit_tag %>
-	<% end %>
 
-	<%= link_to 'Take a Picture', new_note_path, remote: true, id: "summon-camera" %>
-
-<%= link_to new_note_path, class: "waves-effect waves-light btn", remote: true, id: "summon-camera" do %>
-  <i class="material-icons left">camera</i> Take a Picture
-<% end %>
 
 
   <ul class="collapsible" data-collapsible="accordion">
     <li>
-      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-      <div class="collapsible-body camera-container"><p>Lorem ipsum dolor sit amet.</p></div>
+      <div class="collapsible-header"><i class="material-icons">note_add</i>Upload an Image</div>
+        <div class="collapsible-body camera-container">
+        <%= form_tag({action: :create}, multipart: true) do %>
+        <%= text_field_tag 'title' %>
+        <%= file_field_tag 'picture' %>
+        <%= submit_tag %>
+        <% end %>
+      </div>
     </li>
     <li>
 
-      <div class="collapsible-header camera-caller"><i class="material-icons">whatshot</i>take a picture</div>
+      <div class="collapsible-header camera-caller"><i class="material-icons">camera</i>Take a Picture</div>
 
-      <div class="collapsible-body" >take a picture of your document
+      <div class="collapsible-body" >Take a Picture of your document
       <%= render partial: 'camera' %>
       </div>
     </li>
