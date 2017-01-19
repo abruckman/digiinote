@@ -1,13 +1,17 @@
 class NotesController < ApplicationController
   include NotesHelper
+  
 
   def index
+    p "breh" * 40
+    render :index
   end
 
   def new
+    p request.xhr?
     respond_to do |format|
+      format.html {}
       format.js
-      # format.html {}
     end
   end
 
