@@ -4,33 +4,40 @@
 <% end %>
 
 <%= form_for @note do |f| %>
-	<%= f.text_area :text %>
-	<ul class="collapsible" data-collapsible="accordion">
+	<%= f.text_area :text, style: "display:none" %>
+	<ul class="collapsible top" data-collapsible="accordion">
 	    <li>
-	      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+	      <div class="collapsible-header"><i class="material-icons">note_add</i>Second</div>
 	      <div class="collapsible-body camera-container">
-	      	<%= f.file_field :picture %>
-			<%= f.submit %>
-	      </div>
+        <div class="upload">
+        SELECT
+          <%= f.file_field :picture, class: "upload" %>
+        </div>
+       <br>
+			<%= f.submit " Submit", class:'btn' %>
+	     <br/>
+        </div>
 	    </li>
 	    <li>
-	      <div class="collapsible-header edit-camera-caller"><i class="material-icons">whatshot</i>take a picture</div>
+	      <div class="collapsible-header edit-camera-caller"><i class="material-icons">camera</i>take a picture</div>
 
 	      <div class="collapsible-body" >take a picture of your document
 	      <%= render partial: 'camera' %>
 	      </div>
 	    </li>
-	    <li>
-	      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-	      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-	    </li>
+
   	</ul>
 
-		
-	
+
+
 <% end %>
 
 <div id='camera-container'></div>
 
-<%= link_to 'Take a Picture', getcamera_path, remote: true, id: "summon-camera" %>
-<%= link_to 'Send to Google Docs', oauth2_path %>
+
+
+
+<%= link_to oauth2_path, class: "bot-marg waves-effect waves-light btn" do %>
+  <i class="material-icons left">cloud</i> Send
+<% end %>
+
