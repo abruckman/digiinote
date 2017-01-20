@@ -1,4 +1,4 @@
-$('document').ready(function(){
+$(document).on('turbolinks:load', function(){
   $('.edit-camera-caller').on('click', function(){
     console.log("here IN THE EDIT JS.ERB!")
 
