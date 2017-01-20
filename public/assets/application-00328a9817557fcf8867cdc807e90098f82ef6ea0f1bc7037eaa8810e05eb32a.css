@@ -1,0 +1,310 @@
+body {
+	
+	text-align:center;
+	align-items: center;
+
+}
+#body {
+	background-color:#2C5197;
+}
+
+
+.card-panel {
+  /*opacity: 0.5;*/
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3);
+
+  transition: box-shadow 0.25s;
+  padding: 20px;
+  width: 40%;
+  margin: auto;
+  height: 4em;
+  /*margin: 0.5rem 0 1rem 0;*/
+  border-radius: 10px;
+  /*background-color: #ededed;*/
+  /*box-shadow: 0 4px 4px 0 
+  rgba(0, 0, 0, 0.14), 0 1px 5px 0 
+  rgba(0, 0, 0, 0.12), 0 3px 1px -2px 
+  rgba(0, 0, 0, 0.2);
+*/
+}
+body {
+  text-align: center;
+  background: url('/assets/background-561e3da595c367ee351f5299517c8e2f4a267860b172f9314db0e585207811bc.jpg');
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-attachment:fixed;
+}
+html {
+  height: 100%;
+  # background-attachment: fixed;
+
+}
+
+body#testing {
+}
+
+
+a:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+
+
+.collapsible {
+  width: 40%;
+  margin:auto;
+}
+
+#form-thing {
+  width: 50%;
+  margin: auto;
+}
+
+
+a:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+.btn-file{
+  position:relative;
+  overflow:hidden;
+
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.body_b{
+  background-color: RGBA(255, 255, 255, 0.7);
+  border-style: solid;
+  border-width: 1px;
+  border-color: #a8a8a8;
+  border-radius: 10px;
+  width:960px;
+  # height:500px;
+  opacity: 1;
+  margin:auto;
+  margin-top: 2.0cm;
+}
+# }
+# .fileinput-button {
+
+#  width: 157px;
+#     height: 57px;
+#     overflow: hidden;
+#      # position: relative;
+#   cursor: pointer;
+# }
+
+
+# # .btn {
+# #   height:45px;
+# # }
+# .hi {
+#     display: block ;
+#     width: 157px ;
+#     height: 57px ;
+#     opacity: 6 ;
+#     overflow: hidden ;
+
+# }
+
+
+
+div.upload {
+    width: 157px;
+    height: 30px;
+    overflow: hidden;
+    align-items:center;
+    margin:auto;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    background-color: #26a69a;
+      font-size: 0.9rem;
+        font-family: sans-serif;
+        color: white;
+
+    padding-top: 0.6em;
+
+}
+
+div.upload input {
+    display: block !important;
+    width: 157px !important;
+    height: 30px !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+    text-align:center;
+    margin:auto;
+}
+
+.btn {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  height: 30px;
+  width:157px;
+}
+
+.collapsible {
+  # padding-bottom: 30px;
+  margin-bottom: 80px;
+  background-color: white
+}
+
+.bot-marg {
+  margin-bottom: 50px;
+}
+
+.top {
+  margin-top: 50px;
+}
+
+.padding-bot{
+  margin-bottom: 50px;
+}
+
+.fontcol{
+  color:white;
+}
+
+.home-marg{
+  margin: 15px 15px 15px 15px;
+
+}
+/* line 1, /Users/saravshah/Desktop/phase3/week3/FinalProject/digiinote/app/assets/stylesheets/scaffolds.scss */
+body {
+  color: #333;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  margin: 33px;
+}
+
+/* line 9, /Users/saravshah/Desktop/phase3/week3/FinalProject/digiinote/app/assets/stylesheets/scaffolds.scss */
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  margin: 33px;
+}
+
+/* line 16, /Users/saravshah/Desktop/phase3/week3/FinalProject/digiinote/app/assets/stylesheets/scaffolds.scss */
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+/* line 22, /Users/saravshah/Desktop/phase3/week3/FinalProject/digiinote/app/assets/stylesheets/scaffolds.scss */
+a {
+  color: #000;
+}
+/* line 25, /Users/saravshah/Desktop/phase3/week3/FinalProject/digiinote/app/assets/stylesheets/scaffolds.scss */
+a:visited {
+  color: white;
+}
+/* line 29, /Users/saravshah/Desktop/phase3/week3/FinalProject/digiinote/app/assets/stylesheets/scaffolds.scss */
+a:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+/* line 35, /Users/saravshah/Desktop/phase3/week3/FinalProject/digiinote/app/assets/stylesheets/scaffolds.scss */
+th {
+  padding-bottom: 5px;
+}
+
+/* line 39, /Users/saravshah/Desktop/phase3/week3/FinalProject/digiinote/app/assets/stylesheets/scaffolds.scss */
+td {
+  padding-bottom: 7px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/* line 46, /Users/saravshah/Desktop/phase3/week3/FinalProject/digiinote/app/assets/stylesheets/scaffolds.scss */
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+/* line 51, /Users/saravshah/Desktop/phase3/week3/FinalProject/digiinote/app/assets/stylesheets/scaffolds.scss */
+#notice {
+  color: green;
+}
+
+/* line 55, /Users/saravshah/Desktop/phase3/week3/FinalProject/digiinote/app/assets/stylesheets/scaffolds.scss */
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+/* line 61, /Users/saravshah/Desktop/phase3/week3/FinalProject/digiinote/app/assets/stylesheets/scaffolds.scss */
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+/* line 69, /Users/saravshah/Desktop/phase3/week3/FinalProject/digiinote/app/assets/stylesheets/scaffolds.scss */
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0;
+  background-color: #c00;
+  color: #fff;
+}
+/* line 80, /Users/saravshah/Desktop/phase3/week3/FinalProject/digiinote/app/assets/stylesheets/scaffolds.scss */
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+/* line 86, /Users/saravshah/Desktop/phase3/week3/FinalProject/digiinote/app/assets/stylesheets/scaffolds.scss */
+label {
+  display: block;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */
+
