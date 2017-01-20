@@ -1,4 +1,4 @@
-$('document').ready(function(){
+$(document).on('turbolinks:load', function(){
   $('.camera-caller').on('click', function(){
     console.log('athetehw')
 
@@ -153,7 +153,7 @@ $('document').ready(function(){
         var formdata = new FormData();
         formdata.append('picture', data)
         //fix DOM path to auth_token
-        formdata.append('authenticity_token', $('.edit_note').children()[2].value)
+        formdata.append('authenticity_token', $($('#form-thing').children()[0]).children()[1].value)
 
         $.ajax({
           method: 'POST',
