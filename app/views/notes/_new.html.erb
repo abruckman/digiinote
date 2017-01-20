@@ -9,9 +9,23 @@
         <div id= "form-thing">
         <%= form_tag({action: :create}, multipart: true ) do %>
         <%= text_field_tag 'title', 'Title', :onclick => 'if($(this).val()=="Title"){$(this).val("");};' %>
-        <%= file_field_tag 'picture' %>
-        <%= submit_tag %>
-        <% end %>
+
+
+
+        <div class="upload fileinput-button   ">SELECT
+
+        <%= file_field_tag 'picture', class: "upload" %>
+
+        </div>
+
+
+
+<br>
+
+        <%= submit_tag " Submit", class:'btn'%>
+<br/>
+
+        <% end %><br><br>
         </div>
       </div>
     </li>
@@ -22,10 +36,6 @@
       <div class="collapsible-body" >Take a Picture of your document
       <%= render partial: 'camera' %>
       </div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
     </li>
   </ul>
 
