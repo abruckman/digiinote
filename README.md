@@ -1,9 +1,5 @@
-<div style=width="22;">
-
 ![digiinote]
-(https://github.com/abruckman/digiinote/blob/development/public/images/diginoteheaderidk.png?raw=true width="200")
-
-</div style=width="22;">
+(https://github.com/abruckman/digiinote/blob/development/public/images/header-smaller.png?raw=true)
 
 
 <div style="text-align: center;">
