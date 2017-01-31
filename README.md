@@ -2,12 +2,14 @@
 (https://github.com/abruckman/digiinote/blob/development/public/images/header-smaller.png?raw=true)
 
 
-<div style="text-align: center;">
+
+<div style="text-align: center;" markdown="1">
+
 ![digiinote_image](https://github.com/abruckman/digiinote/blob/development/public/images/image_1.jpg?raw=true )
 
 ![digiinote_image2](https://github.com/abruckman/digiinote/blob/development/public/images/image_2.jpg?raw=true)
+</div style="text-align: center;" markdown="1">
 
-</div style="text-align: center;">
 
 
 
