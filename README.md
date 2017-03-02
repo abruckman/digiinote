@@ -1,28 +1,115 @@
-# digiiNote
-Diginote is your one stop shop for text digitilization. We use the Google Vision API to turn images of text, including handwriting, into searchable and editable text. We then send that text straight to your Google Drive.
-## Installation
-### Dependencies
-This app uses Rails 5, Ruby 2.4 and PGSQL.
+![digiinote]
+(https://github.com/abruckman/digiinote/blob/development/public/images/header-smaller.png?raw=true)
 
-You will also need to obtain API keys and credentials for Google Cloud, Google Authentication and Google Drive.
 
-This app requires use of the Google SDK for GCloud authorization
+
+<div style="text-align: center;" markdown="1">
+
+![digiinote_image](https://github.com/abruckman/digiinote/blob/development/public/images/image_1.jpg?raw=true )
+
+![digiinote_image2](https://github.com/abruckman/digiinote/blob/development/public/images/image_2.jpg?raw=true)
+</div style="text-align: center;" markdown="1">
+
+
+
+
+## Description
+Digiinote is a Rails app that takes in an uploaded image of handwritten notes and digitizes them directly into a Google Drive document. After each submission, you are able to view the document on an embedded Google Drive
+
+##Usage
+* Visit the digiinote main page and upload an image
+![](https://github.com/abruckman/digiinote/blob/development/public/images/demo_upload_digii.gif?raw=true)
+
+* Or capture an image instantly
+![](https://github.com/abruckman/digiinote/blob/development/public/images/demo_webcam.gif?raw=true)
+
+
+
+
+
+---
+The site is available live on [Heroku](https://evening-lake-82966.herokuapp.com)
+
+---
+
+
+### 0. Fork and then clone the repo
+
+In your terminal run:
+```bash
+  git clone https://github.com/<your-username>/digiinote.git
+```
+
+### 1. Get and hide your API keys
+
+### 2. Include dontenv gem in your gem file
+
+##### You'll need to get API keys from:
+- [Google API Console] (https://console.developers.google.com)
+- Download the Google Credentials JSON
+
+### .env file
+This is what our .env file looks like, with the empty strings replaced with API keys.
+
+```bash
+GOOGLE_SECRET_KEY = ""
+OAUTH = ""
+CLIENT_SECRET = ""
+PROJECT_ID = ""
+AUTH_URI = ""
+TOKEN_URI = ""
+AUTH_PROVIDER_X509_CERT_URL = ""
+REDIRECT_URIS = ""
+TYPE = "service_account"
+PRIVATE_KEY_ID = ""
+PRIVATE_KEY = ""
+CLIENT_EMAIL =" ""
+CLIENT_ID = ""
+CLIENT_X509_CERT_URL = ""
+DEPLOYED_TO = "local"
+```
+
+### Google SDK
+
+ This app requires use of the Google SDK for GCloud authorization
+
 1. Use Homebrew to install the Google SDK by entering `` brew install Caskroom/cask/google-cloud-sdk ``
 2. To get access to your GCloud resources enter `` gcloud auth application-default login ``
-3. This will take you to your google account where you can log in. Vision OCR does eventually cost money, but if you sign up you'll get $300 of credit to spend in the first two months
-## Usage
-1. On the home page you can upload a photo or take a photo of handwriting or text.
-2. You will be redirected to an "edit" page where you can check the accuracy, make changes and add more images to your document.
-3. Once you're happy with your text, click "Save to Google Drive". This will redirect you to a Google Drive login.
-4. Upon login you will see an embedded Google Doc that you can edit, and the file will be saved to your Google Drive.
-5. Profit!!!
-## Contributing
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
-## History
-Our team's Slack was filled with pictures of handwritten notes, mostly on whiteboards, Post-its, or binder paper. Most were unreadable and forget about searching through them! We knew there had to  be a better way. So we set out to make an app that would handle all our messy notes. We found google's api was effective, but there was no easy way to use it. And so began the saga of digiiNote
+3. This will take you to your google account where you can log in
+
+
+### 3. Navigate to the project
+- Run bundle install to install the gems
+- Start the rails server (localhost)
+
+```bash
+cd digiinote
+bundle
+rails s
+```
+
+Site will be live at https://localhost:3000/
+
+## About digiinote
+
+Our team noticed a trend of circulating images on our cohort’s Slack Channel that had various handwritten notes on whiteboards, post-its, and/or notebook paper that were impossible to keep track of. We integrated the Google Vision, Google Drive, and Google OAuth API to build a user-friendly application that digitizes handwritten notes.
+
+#####Languages and technologies:
+* Ruby on Rails
+* Materialize
+* HTML/CSS
+* Javascript
+* PostgreSQL
+
+
+## Contributors
+
+* [Valeria Martinez](https://github.com/valeria-martinez)
+* [Sarav Shah](https://github.com/saravshah)
+* [James Draper](https://github.com/jdraper9)
+* [Andy Bruckman](https://github.com/abruckman)
+* [Martin Murray](https://github.com/mjmurra4)
+
+
 ## Credits
-Thanks to everyone who worked on the wrappers for the Google APIs, special thanks to @gimite for the ruby-google-drive gem. Thanks to @KDwinzel for inspiration with his Ocrad JS. Props to everyone who worked on Tesseract. Shout-out to Jared for the debugging help. 
+Thanks to @KDwinzel for inspiration with his Ocrad JS.
