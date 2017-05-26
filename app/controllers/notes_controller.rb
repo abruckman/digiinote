@@ -3,6 +3,7 @@ class NotesController < ApplicationController
   
 
   def index
+    p "breh" * 40
     render :index
   end
 
@@ -12,22 +13,6 @@ class NotesController < ApplicationController
       format.html {}
       format.js
     end
-  end
-
-  def send_twilio
-    p "8"*40
-    p $var
-    p "8"*40
-
-    account_sid = 'AC606606c7b0730c8b6bf803f867dee6a3'#ENV['ACCOUNT_SID']
-    auth_token = '09d76c274adb522ad0d25fc16cece014'#ENV['TWILIO_AUTH_TOKEN']
-    @client = Twilio::REST::Client.new account_sid, auth_token
-    @message = @client.messages.create(
-      to: "+19252165786",
-      from: "+19259058076",
-      body: $var
-    )
-    render :index
   end
 
   def create
@@ -43,11 +28,14 @@ class NotesController < ApplicationController
 
         @note = Note.create({text: text, title: title})
         session[:note_id] = @note.id
+
         redirect_to "/notes/#{@note.id}/edit"
-        $var = @note.text
 
         # byebug
     rescue Exception => e
+      p "*"*50
+      p e.message
+      p "*"*50
       if e.message == "undefined method `text' for nil:NilClass"
         flash[:notice] = "No readable text in picture, try again with a new image"
       elsif e.message.include?("8:Insufficient tokens") || e.message.include?("14")
