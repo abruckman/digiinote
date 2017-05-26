@@ -1,0 +1,2 @@
+class SendTwilioController < ApplicationController
+end
