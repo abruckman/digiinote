@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resources :notes
 
+  get '/sendtwilio', to: 'notes#send_twilio'
+
   # get 'notes', to:'notes#index'
   # post 'notes', to:'notes#create'
   # get 'notes/new', to:'notes#new'

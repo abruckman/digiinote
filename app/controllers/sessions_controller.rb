@@ -19,8 +19,8 @@ class SessionsController < ApplicationController
 
     session = GoogleDrive.login_with_oauth(credentials)
     @document = session.upload_from_string(@note.text, @note.title, :content_type => "text/plain")
-
     redirect_to "/notes/#{@document.id}"
   end
+
 
 end
